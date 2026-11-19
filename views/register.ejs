@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Register - Amp' }) %>
+</head>
+<body>
+    <%- include('partials/brand') %>
+    <main class="page">
+        <div class="background-text">
+            <span>AMP</span>
+        </div>
+        <section class="auth-card">
+            <h1>Let's get started!</h1>
+
+            <form class="auth-form" action="/register" method="POST">
+                <label class="field">
+                    <span>Username</span>
+                    <input type="text" name="username" placeholder="Enter a username" autocomplete="username" required>
+                </label>
+                <label class="field">
+                    <span>Email address</span>
+                    <input type="email" name="email" placeholder="you@example.com" autocomplete="email" required>
+                </label>
+                <label class="field">
+                    <span>Password</span>
+                    <input type="password" name="password" placeholder="Create a password" autocomplete="new-password" minlength="12" required>
+                </label>
+                <button class="submit" type="submit">Create account</button>
+            </form>
+
+            <a id="auth-alt" href="/login">Already have an account? <b>Sign in</b></a>
+        </section>
+    </main>
+
+</body>
+</html>

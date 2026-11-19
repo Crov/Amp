@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: code + ' - Amp' }) %>
+</head>
+<body>
+    <%- include('partials/brand') %>
+
+    <main class="error-page">
+        <div class="background-text">
+            <span><%= code %></span>
+        </div>
+        <div class="error-content">
+            <span class="error-code"><%= code %></span>
+            <h1 class="error-message"><%= message %></h1>
+        </div>
+    </main>
+</body>
+</html>
