@@ -52,11 +52,12 @@ app.get('/home', auth.authenticate, (req, res) => {
 
 app.use('/', require('./routes/auth.route'));
 app.use('/users', require('./routes/user.route'));
+app.use('/artists', require('./routes/artist.route'));
 
 app.use(errorMiddleware.notFound);
 app.use(errorMiddleware.server);
 
-app.listen(process.env.PORT, () => {
+app.listen(process.env.PORT || 3000, '0.0.0.0', () => {
     console.log(`Server is running on port ${process.env.PORT}`);
 });
 

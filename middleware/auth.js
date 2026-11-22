@@ -1,10 +1,6 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/user.model');
 
-const renderError = (res, status, code, message) => {
-    return res.status(status).render('error', { code, message });
-};
-
 const getToken = (req) => {
     const authorization = req.header('Authorization');
     if (authorization) {

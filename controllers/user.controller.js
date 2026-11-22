@@ -4,6 +4,9 @@ const Artist = require('../models/artist.model');
 const Song = require('../models/song.model');
 const mongoose = require('mongoose');
 
+const getUserPlaylists = (userId) =>
+    Playlist.find({ owner: userId }).sort({ updatedAt: -1 });
+
 exports.getUserProfile = async (req, res, next) => {
     try {
         const userId = req.params.id;
@@ -39,7 +42,7 @@ exports.getUserProfile = async (req, res, next) => {
             });
         }
 
-        const playlists = await Playlist.find({ owner: userId });
+        const playlists = await getUserPlaylists(userId);
         const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
         const recentlyPlayed = user.recentlyPlayed.filter(
             entry => entry.playedAt >= thirtyDaysAgo && entry.song
@@ -110,3 +113,5 @@ exports.recordRecentlyPlayed = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.getUserPlaylists = getUserPlaylists;

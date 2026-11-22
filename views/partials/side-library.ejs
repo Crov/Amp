@@ -1,0 +1,8 @@
+<aside class="side-library">
+    <% playlists.forEach(playlist => { %>
+        <div class="playlist-card">
+            <img src="<%= playlist.playlistImage || '/default_pfp.svg' %>" alt="">
+            <h3 class="playlist-name"><%= playlist.name %></h3>
+        </div>
+    <% }) %>
+</aside>

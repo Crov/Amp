@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: artist.username + ' - Profile', stylesheets: ['/css/base.css', '/css/nav.css', '/css/artistProfile.css', '/css/side-library.css'] }) %>
+</head>
+<body>
+    <%- include('partials/nav') %>
+    <main>
+        <%- include('partials/side-library') %>
+        <section class="artist-info">
+            <div class="artist-cover">
+                <img class="profile-picture" src="<%= artist.profilePicture || '/default_pfp.svg' %>" alt="">
+                <h2><%= artist.username %></h2>
+            </div>
+            <p class="bio"><%= artist.bio %></p>
+        </section>
+        <section class="artist-content">
+            <div>
+                <h2 class="section-title">Singles and EPs</h2>
+                <div class="song-cards">
+                <% if (songs.length === 0) { %>
+                    <p class="placeholder-text">This artist hasn't released any singles or EPs.</p>
+                <% } else songs.forEach(song => { %>
+                    <div class="song-card">
+                        <img src="<%= song.coverImage || '/default_pfp.svg' %>" alt="">
+                        <h3><%= song.title %></h3>
+                    </div>
+                <% }) %>
+                </div>
+            </div>
+            <div>
+                <h2 class="section-title">Albums</h2>
+                <div class="album-cards">
+                <% if (albums.length === 0) { %>
+                    <p class="placeholder-text">This artist hasn't released any albums.</p>
+                <% } else albums.forEach(album => { %>
+                    <div class="album-card">
+                        <img src="<%= album.coverImage || '/default_pfp.svg' %>" alt="">
+                        <h3><%= album.title %></h3>
+                    </div>
+                <% }) %>
+                </div>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

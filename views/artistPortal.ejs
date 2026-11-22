@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: 'Create artist - Amp', stylesheets: ['/css/base.css', '/css/nav.css', '/css/auth.css'] }) %>
+</head>
+<body>
+    <%- include('partials/nav') %>
+    <main class="page">
+        <section class="auth-card">
+            <h1>Create your artist profile</h1>
+
+            <% if (typeof error !== 'undefined') { %>
+                <p><%= error %></p>
+            <% } %>
+
+            <form class="auth-form" action="/artists" method="POST" enctype="multipart/form-data">
+                <label class="field">
+                    <span>Artist name</span>
+                    <input type="text" name="username" minlength="3" maxlength="26" required>
+                </label>
+                <label class="field">
+                    <span>Bio</span>
+                    <textarea name="bio"></textarea>
+                </label>
+                <label class="field">
+                    <span>Profile picture</span>
+                    <input type="file" name="profilePicture" accept="image/jpeg,image/png,image/webp">
+                </label>
+                <button class="submit" type="submit">Create artist</button>
+            </form>
+        </section>
+    </main>
+</body>
+</html>

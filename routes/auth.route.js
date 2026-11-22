@@ -18,7 +18,7 @@ const validateRegistration = [
     body('password')
         .isLength({ min: 12 })
         .withMessage('Password must be at least 12 characters long')
-]
+];
 
 const validateLogin = [
     body('email')
@@ -30,7 +30,7 @@ const validateLogin = [
     body('password')
         .notEmpty()
         .withMessage('Password is required')
-]
+];
 
 const validationResults = (req, res, next) => {
     const result = validationResult(req);

@@ -1,9 +1,19 @@
 <nav>
     <%- include('brand') %>
     <% if (currentUser) { %>
-        <a class="nav-profile-menu" href="/users/<%= currentUser._id %>">
-            <span class="nav-profile-username"><%= currentUser.username %></span>
-            <img class="nav-profile-picture" src="<%= currentUser.profilePicture || '/default_pfp.svg' %>" alt="">
-        </a>
+        <div class="nav-actions">
+            <a class="nav-artist-portal" href="/artists/portal">Artist Portal</a>
+            <a class="nav-profile-menu" href="/users/<%= currentUser._id %>">
+                <span class="nav-profile-username"><%= currentUser.username %></span>
+                <img class="nav-profile-picture" src="<%= currentUser.profilePicture || '/default_pfp.svg' %>" alt="" fill="currentColor">
+            </a>
+        </div>
+    <% } else { %>
+        <div class="nav-actions">
+            <a class="nav-artist-portal" href="/login">Log in</a>
+            <a class="nav-profile-menu" href="/register">
+                <span class="nav-profile-username">Register</span>
+            </a>
+        </div>
     <% } %>
 </nav>
