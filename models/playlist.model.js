@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const playlistSchema = new mongoose.Schema({
-    title: {
+    name: {
         type: String,
         required: true,
         trim: true,
@@ -28,6 +28,14 @@ const playlistSchema = new mongoose.Schema({
             default: Date.now
         }
     })],
+    isPublic: {
+        type: Boolean,
+        default: true
+    },
+    playlistImage: {
+        type: String,
+        trim: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('Playlist', playlistSchema);

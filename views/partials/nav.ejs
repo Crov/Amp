@@ -1,0 +1,9 @@
+<nav>
+    <%- include('brand') %>
+    <% if (currentUser) { %>
+        <a class="nav-profile-menu" href="/users/<%= currentUser._id %>">
+            <span class="nav-profile-username"><%= currentUser.username %></span>
+            <img class="nav-profile-picture" src="<%= currentUser.profilePicture || '/default_pfp.svg' %>" alt="">
+        </a>
+    <% } %>
+</nav>

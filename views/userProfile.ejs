@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('partials/head', { title: user.username + ' - Profile', stylesheets: ['/css/nav.css', '/css/userProfile.css'] }) %>
+</head>
+<body>
+    <%- include('partials/nav') %>
+    <main>
+        <section class="user-info">
+            <img class="profile-picture" src="<%= user.profilePicture || '/default_pfp.svg' %>" alt="">
+            <h2><%= user.username %></h2>
+        </section>
+        <section class="user-content">
+            <div>
+                <h2 class="section-title">Playlists</h2>
+                <div class="playlist-cards">
+                <% if (playlists.length === 0) { %>
+                    <p class="placeholder-text">This user doesn't have any public playlists.</p>
+                <% } else playlists.forEach(playlist => { %>
+                    <li>
+                        <img src="<%= playlist.playlistImage %>" alt="">
+                        <h3><%= playlist.name %></h3>
+                    </li>
+                <% }) %>
+                </div>
+            </div>
+            <div>
+                <h2 class="section-title">Liked Songs</h2>
+                <div class="liked-cards">
+                <% if (songs.length === 0) { %>
+                    <p class="placeholder-text">This user hasn't liked any songs.</p>
+                <% } else songs.forEach(song => { %>
+                    <img src="<%= song.coverImage %>" alt="">
+                    <h3><%= song.title %></h3>
+                    <h4><%= song.artist ? (song.artist.username || 'Unknown artist') : 'Unknown artist' %></h4>
+                <% }) %>
+                </div>
+            </div>
+            <div>
+                <h2 class="section-title">Followed Artists</h2>
+                <div class="artist-cards">
+                <% if (artists.length === 0) { %>
+                    <p class="placeholder-text">This user doesn't follow any artists.</p>
+                <% } else artists.forEach(artist => { %>
+                    <img src="<%= artist.profilePicture %>" alt="">
+                    <h3><%= artist.username %></h3>
+                <% }) %>
+                </div>
+            </div>
+        </section>
+        <aside class="recently-played">
+            <h2 class="section-title">Recently Played</h2>
+            <div class="recent-cards">
+            <% if (recentlyPlayed.length === 0) { %>
+                <p class="placeholder-text">This user hasn't played any songs recently.</p>
+            <% } else recentlyPlayed.forEach(entry => { %>
+                <div class="recent-song-card">
+                    <img src="<%= entry.song.coverImage %>" alt="">
+                    <h3><%= entry.song.title %></h3>
+                    <h4><%= entry.song.artist ? (entry.song.artist.username || 'Unknown artist') : 'Unknown artist' %></h4>
+                </div>
+            <% }) %>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

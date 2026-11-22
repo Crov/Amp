@@ -22,6 +22,8 @@ app.use(express.static('./public'));
 app.set('view engine', 'ejs');
 app.set('views', './views');
 
+app.use(auth.loadCurrentUser);
+
 app.get('/', (req, res) => {
     const token = auth.getToken(req);
 
@@ -44,7 +46,12 @@ app.get('/register', (req, res) => {
     res.render('register');
 });
 
+app.get('/home', auth.authenticate, (req, res) => {
+    res.render('home');
+});
+
 app.use('/', require('./routes/auth.route'));
+app.use('/users', require('./routes/user.route'));
 
 app.use(errorMiddleware.notFound);
 app.use(errorMiddleware.server);

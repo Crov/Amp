@@ -30,6 +30,29 @@ const userSchema = new mongoose.Schema({
         ref: 'Artist',
         default: []
     },
+    likedSongs: {
+        type: [mongoose.Schema.Types.ObjectId],
+        ref: 'Song',
+        default: []
+    },
+    recentlyPlayed: {
+        type: [{
+            song: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Song',
+                required: true
+            },
+            playedAt: {
+                type: Date,
+                default: Date.now
+            }
+        }],
+        default: []
+    },
+    profilePicture: {
+        type: String,
+        trim: true
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

@@ -40,6 +40,10 @@ const songSchema = new mongoose.Schema({
     likeCount: {
         type: Number,
         default: 0
+    },
+    coverImage: {
+        type: String,
+        trim: true
     }
 }, { timestamps: true });
 
